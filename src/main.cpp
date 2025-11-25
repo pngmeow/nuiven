@@ -1,3 +1,8 @@
+//
+// THIS IS A EXAMPLE RENDERING CODE
+// Put your code in void render to test out the widgets from the NUIVEN lib
+//
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <iostream>
