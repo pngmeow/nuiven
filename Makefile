@@ -1,13 +1,13 @@
 # Compiler and flags
 CXX := g++
-CXXFLAGS := -Wall -O2 `pkg-config --cflags sdl2 SDL2_ttf`
+CXXFLAGS := -Wall -g -O0 `pkg-config --cflags sdl2 SDL2_ttf`
 LDFLAGS := `pkg-config --libs sdl2 SDL2_ttf`
 
 # Directories
 SRC_DIR := src
 INCLUDE_DIR := include
 BUILD_DIR := build
-TARGET := my_program
+TARGET := nuivendemo
 
 # Find all source files recursively
 SRCS := $(shell find $(SRC_DIR) -name '*.cpp')
@@ -20,12 +20,12 @@ all: $(TARGET)
 # Link executable
 $(TARGET): $(OBJS)
 	@mkdir -p $(dir $(TARGET))
-	$(CXX) $(CXXFLAGS) -I$(INCLUDE_DIR) -o $@ $^ $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE_DIR) -I$(INCLUDE_DIR)/ui -o $@ $^ $(LDFLAGS)
 
 # Compile .cpp to .o
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE_DIR) -I$(INCLUDE_DIR)/ui -c $< -o $@
 
 # Clean everything
 clean:
